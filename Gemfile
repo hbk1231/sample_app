@@ -5,8 +5,6 @@ gem 'rails', '3.2.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,10 +20,22 @@ end
 
 gem 'jquery-rails'
 
-group :test do
-	gem 'capybara'
+group :development do
+	gem 'sqlite3'
 	gem 'rspec-rails'
+	gem 'guard-rspec'
 end
+
+group :test do
+	gem 'rspec-rails'
+	gem 'capybara'
+	gem 'rb-fchange'
+	gem 'rb-notifu'
+	gem 'win32console'
+	gem 'guard-spork'
+	gem 'spork'
+end
+
 group :production do
 	gem 'pg'
 end

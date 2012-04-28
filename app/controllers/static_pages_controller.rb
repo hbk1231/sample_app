@@ -4,4 +4,7 @@
 
   def help
   end
+	
+	def contact
+	end
 end
