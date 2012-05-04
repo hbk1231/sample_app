@@ -38,6 +38,8 @@ group :test do
 	gem 'term-ansicolor'
 	gem 'factory_girl_rails', '3.2.0'
 	gem 'factory_girl'
+	gem 'cucumber-rails', '1.3.0'
+	gem 'database_cleaner', '0.7.2'
 end
 
 group :production do
