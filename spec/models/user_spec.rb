@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#
-
 require 'spec_helper'
 
 describe User do
@@ -24,9 +13,16 @@ describe User do
 	it { should respond_to(:password) }
 	it { should respond_to(:password_confirmation) }
 	it { should respond_to(:remember_token) }
+	it { should respond_to(:admin) }
 	it { should respond_to(:authenticate) }
 	
 	it { should be_valid }
+	it { should_not be_admin }
+	
+	describe "with admin attribute set to 'true'" do
+		before { @user.toggle!(:admin) }
+		it { should be_admin }
+	end
 
 	describe "when name is not present" do
 		before { @user.name = " " }
@@ -102,5 +98,22 @@ describe User do
 	describe "remember token" do
 		before { @user.save }
 		its(:remember_token) { should_not be_blank }
+	end
+	
+	describe "edit" do
+	let(:user) { FactoryGirl.create(:user) }
+		before { visit edit_user_path(user) }
+		
+		describe "page" do
+			it { should have_selector('h1', text: "Edit user") }
+			it { should have_selector('title', text: "Edit user") }
+			it { should have_link('change', href: 'http://gravatar.com/emails') }
+		end
+
+		describe "with invalid information" do
+		let(:error) { '1 error prohibited this user from being saved' }
+			before { click_button "Update" }
+				it { should have_content(error) }
+		end
 	end
 end

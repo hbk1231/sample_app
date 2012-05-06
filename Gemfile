@@ -2,6 +2,8 @@
 
 gem 'rails', '3.2.3'
 gem 'bcrypt-ruby', '3.0.1'
+gem 'faker', '1.0.1'
+gem 'will_paginate', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -38,8 +40,6 @@ group :test do
 	gem 'term-ansicolor'
 	gem 'factory_girl_rails', '3.2.0'
 	gem 'factory_girl'
-	gem 'cucumber-rails', '1.3.0'
-	gem 'database_cleaner', '0.7.2'
 end
 
 group :production do
